@@ -2,7 +2,8 @@ const
     gulp = require('gulp'),
     ts = require('gulp-typescript'),
     jsminify = require('gulp-minify'),
-    path = require('path');
+    path = require('path'),
+    tslint = require('gulp-tslint');
 
 const config = {
     tsconfig: 'tsconfig.json',
@@ -14,6 +15,9 @@ const config = {
                 min: '.min.js'
             }
         }
+    },
+    typescript: {
+        tslint: 'tslint.json'
     }
 }
 
@@ -27,6 +31,10 @@ const tsProject = ts.createProject(config.tsconfig);
 
 const typescriptBuild = (pipe) =>
     gulp.src(buildConfig.javascript.source)
+    .pipe(tslint({
+        configuration: config.typescript.tslint
+    }))
+    .pipe(tslint.report())
     .pipe(tsProject())
     .pipe(jsminify(config.javascript.minify))
     .pipe(gulp.dest(config.javascript.out));

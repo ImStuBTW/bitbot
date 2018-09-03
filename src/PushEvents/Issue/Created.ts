@@ -6,7 +6,7 @@ export class Created extends IssueEvent<IssueEventConfig> {
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public issueEventType() {

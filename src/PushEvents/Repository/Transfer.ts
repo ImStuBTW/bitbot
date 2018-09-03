@@ -1,5 +1,5 @@
-import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 import { Owner } from '../PayloadTypes';
+import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 
 export type TransferEventConfig = {
     previous_owner: Owner
@@ -11,7 +11,7 @@ export class Transfer extends RepositoryEvent<TransferEventConfig> {
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public repositoryEventType() {

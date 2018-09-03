@@ -11,7 +11,7 @@ export class CommentCreated extends IssueEvent<CommentCreatedConfig> {
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public issueEventType() {

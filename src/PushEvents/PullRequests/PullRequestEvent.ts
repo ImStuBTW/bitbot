@@ -1,5 +1,5 @@
+import { Event, EventConfig, EventType } from '../Event';
 import { PullRequest, Repository } from '../PayloadTypes';
-import { EventConfig, Event, EventType } from '../Event';
 
 export * from './ApprovalRemoved';
 export * from './Approved';
@@ -41,9 +41,9 @@ export abstract class PullReqestEvent<T extends PullRequestEventConfig> extends 
         return Object.assign({}, this.config.repository);
     }
 
-    type() {
+    public type() {
         return EventType.Issue;
     }
 
-    abstract pullRequestEventType(): PullRequestEventType;
+    public abstract pullRequestEventType(): PullRequestEventType;
 }

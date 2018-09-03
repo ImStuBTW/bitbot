@@ -61,10 +61,10 @@ export type PullRequest = {
         repository: Repository
     },
     merge_commit: { hash: string },
-    participants: Owner[], //User
-    reviewers: Owner[], //User
+    participants: Owner[],  // User
+    reviewers: Owner[], // User
     close_source_branch?: boolean,
-    closed_by?: Owner, //user
+    closed_by?: Owner, // user
     reason?: string,
     created_on: string,
     updated_on: string,

@@ -1,5 +1,5 @@
-import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 import { PushObject } from '../PayloadTypes';
+import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 
 export type PushConfig = {
     push: {
@@ -13,7 +13,7 @@ export class Push extends RepositoryEvent<PushConfig> {
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public repositoryEventType() {

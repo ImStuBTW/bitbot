@@ -1,5 +1,5 @@
-import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 import { LinkMap } from '../PayloadTypes';
+import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 
 export type Change<T> = {
     new: T,
@@ -25,7 +25,7 @@ export class Updated extends RepositoryEvent<UpdatedConfig> {
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public repositoryEventType() {

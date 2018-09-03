@@ -1,5 +1,5 @@
 import { Owner } from '../PayloadTypes';
-import { PullRequestEventConfig, PullReqestEvent, PullRequestEventType } from './PullRequestEvent';
+import { PullReqestEvent, PullRequestEventConfig, PullRequestEventType } from './PullRequestEvent';
 
 export type ApprovalRemovedConfig = {
     approval: {
@@ -14,7 +14,7 @@ export class ApprovalRemoved extends PullReqestEvent<ApprovalRemovedConfig> {
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public pullRequestEventType() {

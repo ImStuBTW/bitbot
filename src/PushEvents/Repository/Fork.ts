@@ -1,5 +1,5 @@
-import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 import { Repository } from '../PayloadTypes';
+import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 
 export type ForkConfig = {
     fork: Repository
@@ -11,7 +11,7 @@ export class Fork extends RepositoryEvent<ForkConfig> {
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public repositoryEventType() {

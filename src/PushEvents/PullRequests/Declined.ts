@@ -1,4 +1,4 @@
-import { PullRequestEventConfig, PullReqestEvent, PullRequestEventType } from './PullRequestEvent';
+import { PullReqestEvent, PullRequestEventConfig, PullRequestEventType } from './PullRequestEvent';
 
 export class Declined extends PullReqestEvent<PullRequestEventConfig> {
     constructor(config: PullRequestEventConfig) {
@@ -6,7 +6,7 @@ export class Declined extends PullReqestEvent<PullRequestEventConfig> {
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public pullRequestEventType() {

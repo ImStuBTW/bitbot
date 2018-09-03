@@ -11,7 +11,7 @@ export class Updated extends IssueEvent<UpdatedConfig> {
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public issueEventType() {

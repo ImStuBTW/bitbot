@@ -1,5 +1,5 @@
 import { Comment } from '../PayloadTypes';
-import { PullRequestEventConfig, PullReqestEvent, PullRequestEventType } from './PullRequestEvent';
+import { PullReqestEvent, PullRequestEventConfig, PullRequestEventType } from './PullRequestEvent';
 
 export type CommentDeletedConfig = {
     comment: Comment
@@ -11,7 +11,7 @@ export class CommentDeleted extends PullReqestEvent<CommentDeletedConfig> {
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public pullRequestEventType() {

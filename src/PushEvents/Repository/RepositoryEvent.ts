@@ -1,5 +1,5 @@
-import { Owner, LinkMap, Repository } from '../PayloadTypes';
-import { EventConfig, Event, EventType } from '../Event';
+import { Event, EventConfig, EventType } from '../Event';
+import { LinkMap, Owner, Repository } from '../PayloadTypes';
 
 export * from './BuildStatusCreated';
 export * from './BuildStatusUpdated';
@@ -40,7 +40,7 @@ export abstract class RepositoryEvent<T extends RepositoryEventConfig> extends E
         super(config);
     }
 
-    type() {
+    public type() {
         return EventType.Repository;
     }
 
@@ -48,5 +48,5 @@ export abstract class RepositoryEvent<T extends RepositoryEventConfig> extends E
         return Object.assign({}, this.config.repository);
     }
 
-    abstract repositoryEventType(): RepositoryEventType;
+    public abstract repositoryEventType(): RepositoryEventType;
 }

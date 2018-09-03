@@ -1,5 +1,5 @@
-import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 import { CommitStatus } from '../PayloadTypes';
+import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 
 export type BuildStatusCreatedConfig = {
     commit_status: CommitStatus
@@ -11,7 +11,7 @@ export class BuildStatusCreated extends RepositoryEvent<BuildStatusCreatedConfig
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public repositoryEventType() {

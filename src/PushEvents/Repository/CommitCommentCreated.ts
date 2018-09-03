@@ -1,5 +1,5 @@
-import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 import { Comment } from '../PayloadTypes';
+import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
 
 export type CommitCommentCreatedConfig = {
     comment: Comment,
@@ -12,7 +12,7 @@ export class CommitCommentCreated extends RepositoryEvent<CommitCommentCreatedCo
     }
 
     public toMessageObject() {
-
+        return null;
     }
 
     public repositoryEventType() {

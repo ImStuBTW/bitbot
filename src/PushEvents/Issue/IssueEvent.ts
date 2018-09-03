@@ -1,5 +1,5 @@
+import { Event, EventConfig, EventType } from '../Event';
 import { Issue, Repository } from '../PayloadTypes';
-import { EventConfig, Event, EventType } from '../Event';
 
 export * from './CommentCreated';
 export * from './Created';
@@ -29,9 +29,9 @@ export abstract class IssueEvent<T extends IssueEventConfig> extends Event<T> {
         return Object.assign({}, this.config.repository);
     }
 
-    type() {
+    public type() {
         return EventType.Issue;
     }
 
-    abstract issueEventType(): IssueEventType;
+    public abstract issueEventType(): IssueEventType;
 }
