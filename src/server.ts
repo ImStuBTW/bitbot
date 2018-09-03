@@ -1,15 +1,14 @@
 // Basic express server to listen for Bitbucket webhooks.
-var express = require('express');
-var bodyParser = require('body-parser');
+import * as express from "express"
+import * as bodyParser from 'body-parser';
+import * as request from "request";
+import config from "../config";
+
 var app = express();
 app.use(bodyParser.json());
 
-// Used to push message to chat services.
-var request = require('request');
-
-// See config.js for server ports and chat webhook configuration.
-var config = require('./config');
-
+//test
+console.log('yes');
 // Create Discord-formatted message and send it to the Discord webhook.
 const discordPost = (message) => {
     let newMessage = {
@@ -27,7 +26,7 @@ const discordPost = (message) => {
         method: 'POST',
         json: true,
         body: newMessage
-    }, function(error, response, body) {
+    }, function (error, response, body) {
         console.log('Discord message sent.');
         //console.log(response);
     });
@@ -40,7 +39,7 @@ const slackPost = (message) => {
         'icon_emoji': ':card_file_box:',
         'text': 'New push to ' + message.repo + ' by ' + message.username + '.',
         'attachments': [{
-    		"title": message.hash,
+            "title": message.hash,
             "title_link": message.link,
             "text": message.commit
         }]
@@ -51,7 +50,7 @@ const slackPost = (message) => {
         method: 'POST',
         json: true,
         body: newMessage
-    }, function(error, response, body) {
+    }, function (error, response, body) {
         console.log('Slack message sent.');
         //console.log(response);
     });
@@ -60,10 +59,10 @@ const slackPost = (message) => {
 // Figure out which endpoints are configured.
 const post = (message) => {
     console.log('Posting message...');
-    if(config.discordEndpoint) {
+    if (config.discordEndpoint) {
         discordPost(message);
     }
-    if(config.slackEndpoint) {
+    if (config.slackEndpoint) {
         slackPost(message);
     }
 }
@@ -74,9 +73,9 @@ const post = (message) => {
 });*/
 
 // Listen for HTTP POST requests in whatever folder you run this app in.
-app.post('/', function(req,res) {
+app.post('/', function (req, res) {
     console.log('Bitbucket webhook recieved!');
-    res.json({message: 'Message recieved by Bitbot.'});
+    res.json({ message: 'Message recieved by Bitbot.' });
     // console.log(req.body);
     // Turn the response into something easier to work with.
     let message = {
@@ -93,11 +92,11 @@ app.post('/', function(req,res) {
 
 // Start listening on the configured port.
 app.listen(config.port, function () {
-  console.log(config.name + ' running on port ' + config.port + '.');
-  if(config.discordEndpoint && config.slackEndpoint) {
-    console.log('Running in Discord and Slack mode.');
-  }
-  else if(config.discordEndpoint) { console.log('Running in Discord mode.') }
-  else if(config.slackEndpoint) { console.log('Running in Slack mode.') }
-  else { console.log('Endpoints not configured.') }
+    console.log(config.username + ' running on port ' + config.port + '.');
+    if (config.discordEndpoint && config.slackEndpoint) {
+        console.log('Running in Discord and Slack mode.');
+    }
+    else if (config.discordEndpoint) { console.log('Running in Discord mode.') }
+    else if (config.slackEndpoint) { console.log('Running in Slack mode.') }
+    else { console.log('Endpoints not configured.') }
 });

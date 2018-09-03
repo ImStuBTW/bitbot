@@ -29,5 +29,14 @@
     "body-parser": "^1.18.2",
     "express": "4.16.2",
     "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.9.4",
+    "gulp": "^4.0.0",
+    "gulp-minify": "^3.1.0",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "gulp-watch": "^5.0.1",
+    "path": "^0.12.7",
+    "typescript": "^3.0.3"
   }
 }
