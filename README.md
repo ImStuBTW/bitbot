@@ -1,3 +1,7 @@
+# Fork Description
+
+This fork converts BitBot into a Typescript project with intention of supporting every bitbucket push event.
+
 # BitBot - A BitBucket Push Bot for Discord and Slack
 
 BitBot is a small Node script for sending commit messages from BitBucket pushes to the Discord or Slack room of your choice. BitBot takes advantage of BitBucket's outgoing webhooks, and Discord/Slack's incoming webhooks. You'll need your own server running NodeJS in order to receive and pass on the messages.
