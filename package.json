@@ -4,7 +4,7 @@
   "description": "A small Node app to forward BitBucket's webhooks to Discord and Slack webhooks.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "gulp build && node dist/build/index.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
