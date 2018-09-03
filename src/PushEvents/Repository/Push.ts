@@ -1,5 +1,5 @@
 import { RepositoryEvent, RepositoryEventConfig, RepositoryEventType } from './RepositoryEvent';
-import { Owner, LinkMap, PushObject } from '../PayloadTypes';
+import { PushObject } from '../PayloadTypes';
 
 export type PushConfig = {
     push: {

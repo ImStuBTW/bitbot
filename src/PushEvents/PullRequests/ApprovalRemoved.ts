@@ -1,4 +1,4 @@
-import { Owner, Comment } from '../PayloadTypes';
+import { Owner } from '../PayloadTypes';
 import { PullRequestEventConfig, PullReqestEvent, PullRequestEventType } from './PullRequestEvent';
 
 export type ApprovalRemovedConfig = {

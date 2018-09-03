@@ -1,5 +1,5 @@
-import { Owner, Comment } from '../PayloadTypes';
 import { PullRequestEventConfig, PullReqestEvent, PullRequestEventType } from './PullRequestEvent';
+import { Comment } from '../PayloadTypes';
 
 export type CommentUpdatedConfig = {
     comment: Comment

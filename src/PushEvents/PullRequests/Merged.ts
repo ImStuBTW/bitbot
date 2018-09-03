@@ -1,4 +1,3 @@
-import { Owner, Comment } from '../PayloadTypes';
 import { PullRequestEventConfig, PullReqestEvent, PullRequestEventType } from './PullRequestEvent';
 
 export class Merged extends PullReqestEvent<PullRequestEventConfig> {

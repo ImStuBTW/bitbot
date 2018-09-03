@@ -1,4 +1,4 @@
-import { Issue, PullRequest, Repository } from '../PayloadTypes';
+import { PullRequest, Repository } from '../PayloadTypes';
 import { EventConfig, Event, EventType } from '../Event';
 
 export * from './ApprovalRemoved';

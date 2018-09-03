@@ -1,4 +1,4 @@
-import { Owner, Comment } from '../PayloadTypes';
+import { Comment } from '../PayloadTypes';
 import { IssueEvent, IssueEventConfig, IssueEventType } from './IssueEvent';
 
 export type CommentCreatedConfig = {

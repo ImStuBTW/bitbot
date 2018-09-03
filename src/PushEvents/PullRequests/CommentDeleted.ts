@@ -1,4 +1,4 @@
-import { Owner, Comment } from '../PayloadTypes';
+import { Comment } from '../PayloadTypes';
 import { PullRequestEventConfig, PullReqestEvent, PullRequestEventType } from './PullRequestEvent';
 
 export type CommentDeletedConfig = {
