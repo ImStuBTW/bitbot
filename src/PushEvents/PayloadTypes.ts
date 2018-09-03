@@ -1,3 +1,7 @@
+export type href = {
+    href: string
+}
+
 export type Content = {
     raw: string,
     markup: string,
@@ -9,7 +13,11 @@ export type Owner = {
     username: string,
     display_name: string,
     uuid: string,
-    links: string[]
+    links: {
+        self: href,
+        html: href,
+        avatar: href
+    }
 }
 
 export type Project = {
@@ -60,6 +68,11 @@ export type PullRequest = {
         commit: { hash: string },
         repository: Repository
     },
+    destination: {
+        branch: { name: string },
+        commit: { hash: string },
+        repository: Repository
+    },
     merge_commit: { hash: string },
     participants: Owner[],  // User
     reviewers: Owner[], // User
@@ -68,7 +81,9 @@ export type PullRequest = {
     reason?: string,
     created_on: string,
     updated_on: string,
-    links: LinkMap
+    links: LinkMap & {
+        avatar: string
+    }
 }
 
 export type CommitStatus = {
@@ -96,7 +111,11 @@ export type Repository = {
     is_private: boolean
 }
 
-export type LinkMap = { [name: string]: Link };
+export type LinkMap = {
+    self: href,
+    html: href
+}
+
 export type Link = {
     href: string
 }
@@ -118,7 +137,7 @@ export type PushState = {
     type: string,
     name: string,
     target: Target,
-    links: string[]
+    links: LinkMap
 }
 
 export type Commit = {
@@ -132,7 +151,7 @@ export type Commit = {
 export type PushObject = {
     new?: PushState,
     old: PushState,
-    links: string[],
+    links: LinkMap,
     created: boolean,
     closed: boolean,
     forced: boolean,

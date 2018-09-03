@@ -1,0 +1,1 @@
+{"version":3,"file":"ApprovalRemoved.js","sourceRoot":"/src/","sources":["PushEvents/PullRequests/ApprovalRemoved.ts"],"names":[],"mappings":";;AACA,yDAAmG;AASnG,qBAA6B,SAAQ,kCAAsC;IACvE,YAAY,MAA6B;QACrC,KAAK,CAAC,MAAM,CAAC,CAAC;IAClB,CAAC;IAEM,eAAe;QAClB,OAAO,IAAI,CAAC;IAChB,CAAC;IAEM,oBAAoB;QACvB,OAAO,uCAAoB,CAAC,eAAe,CAAC;IAChD,CAAC;CACJ;AAZD,0CAYC"}

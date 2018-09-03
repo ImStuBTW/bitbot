@@ -13,6 +13,21 @@ export enum EventType {
     Issue
 }
 
+export type NotificationData = {
+    repository: string,
+    url: string,
+    action: string,
+    user: {
+        name: string,
+        avatar?: string,
+        url?: string
+    },
+    subtitle?: string,
+    description?: string,
+    additionalinfo?: string
+}
+
+
 export abstract class Event<T extends EventConfig> {
     protected config: T;
 
@@ -24,18 +39,22 @@ export abstract class Event<T extends EventConfig> {
         return Object.assign({}, this.config.owner);
     }
 
-    public abstract toMessageObject(): any;
+    public abstract toMessageObject(): NotificationData;
     public abstract type(): EventType;
+}
+
+interface IEventConstructor {
+    new(config: any): Event<any>;
 }
 
 
 export namespace Event {
-    export const KeyMap = Object.freeze({
+    export const KeyMap: { [name: string]: IEventConstructor } = Object.freeze({
         'issue:comment_created': Issue.CommentCreated,
         'issue:created': Issue.Created,
         'issue:updated': Issue.Updated,
         'pullrequest:approved': PullReqest.Approved,
-        'pullrequest:comment_created': PullReqest.CommentedCreated,
+        'pullrequest:comment_created': PullReqest.CommentCreated,
         'pullrequest:comment_deleted': PullReqest.CommentDeleted,
         'pullrequest:comment_updated': PullReqest.CommentUpdated,
         'pullrequest:created': PullReqest.Created,

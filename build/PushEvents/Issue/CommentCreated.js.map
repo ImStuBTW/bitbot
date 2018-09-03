@@ -1,0 +1,1 @@
+{"version":3,"file":"CommentCreated.js","sourceRoot":"/src/","sources":["PushEvents/Issue/CommentCreated.ts"],"names":[],"mappings":";;AACA,6CAA4E;AAM5E,oBAA4B,SAAQ,uBAAgC;IAChE,YAAY,MAA4B;QACpC,KAAK,CAAC,MAAM,CAAC,CAAC;IAClB,CAAC;IAEM,eAAe;QAClB,OAAO,IAAI,CAAC;IAChB,CAAC;IAEM,cAAc;QACjB,OAAO,2BAAc,CAAC,cAAc,CAAC;IACzC,CAAC;CACJ;AAZD,wCAYC"}

@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "amd",
+    "module": "commonjs",
     "watch": true,
     "declaration": true,
     "sourceMap": true,
     "removeComments": true,
     "moduleResolution": "node",
-    "outFile": "./build/index.js",
+    "outDir": "./build",
+    "declarationDir": "./build",
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,
     "sourceRoot": "/src",

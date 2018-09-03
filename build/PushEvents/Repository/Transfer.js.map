@@ -1,0 +1,1 @@
+{"version":3,"file":"Transfer.js","sourceRoot":"/src/","sources":["PushEvents/Repository/Transfer.ts"],"names":[],"mappings":";;AACA,uDAAgG;AAMhG,cAAsB,SAAQ,iCAAoC;IAC9D,YAAY,MAA2B;QACnC,KAAK,CAAC,MAAM,CAAC,CAAC;IAClB,CAAC;IAEM,eAAe;QAClB,OAAO,IAAI,CAAC;IAChB,CAAC;IAEM,mBAAmB;QACtB,OAAO,qCAAmB,CAAC,QAAQ,CAAC;IACxC,CAAC;CACJ;AAZD,4BAYC"}

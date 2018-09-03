@@ -8,7 +8,7 @@ const
 const config = {
     tsconfig: 'tsconfig.json',
     javascript: {
-        out: 'dist',
+        out: 'build',
         source: 'src',
         minify: {
             ext: {
