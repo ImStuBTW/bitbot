@@ -1,0 +1,1 @@
+{"version":3,"file":"Merged.js","sourceRoot":"/src/","sources":["PushEvents/PullRequests/Merged.ts"],"names":[],"mappings":";;AAAA,yDAAmG;AAEnG,YAAoB,SAAQ,kCAAuC;IAC/D,YAAY,MAA8B;QACtC,KAAK,CAAC,MAAM,CAAC,CAAC;IAClB,CAAC;IAEM,eAAe;QAClB,OAAO,IAAI,CAAC;IAChB,CAAC;IAEM,oBAAoB;QACvB,OAAO,uCAAoB,CAAC,MAAM,CAAC;IACvC,CAAC;CACJ;AAZD,wBAYC"}

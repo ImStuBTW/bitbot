@@ -1,0 +1,31 @@
+{
+    "extends": [
+        "tslint:recommended",
+        "tslint-config-prettier"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "config/**/*.js",
+            "node_modules/**/*.ts"
+        ]
+    },
+    "rules": {
+        "interface-over-type-literal": false,
+        "variable-name": [
+            true,
+            "allow-pascal-case",
+            "allow-leading-underscore"
+        ],
+        "quotemark": [
+            true,
+            "single",
+            "jsx-double",
+            "avoid-template"
+        ],
+        "no-console": false,
+        "no-var-requires": false,
+        "no-namespace": false,
+        "object-literal-sort-keys": false,
+        "array-type": false
+    }
+}

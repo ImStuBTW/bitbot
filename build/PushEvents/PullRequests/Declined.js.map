@@ -1,0 +1,1 @@
+{"version":3,"file":"Declined.js","sourceRoot":"/src/","sources":["PushEvents/PullRequests/Declined.ts"],"names":[],"mappings":";;AAAA,yDAAmG;AAEnG,cAAsB,SAAQ,kCAAuC;IACjE,YAAY,MAA8B;QACtC,KAAK,CAAC,MAAM,CAAC,CAAC;IAClB,CAAC;IAEM,eAAe;QAClB,OAAO,IAAI,CAAC;IAChB,CAAC;IAEM,oBAAoB;QACvB,OAAO,uCAAoB,CAAC,QAAQ,CAAC;IACzC,CAAC;CACJ;AAZD,4BAYC"}

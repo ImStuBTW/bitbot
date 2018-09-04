@@ -1,0 +1,1 @@
+{"version":3,"file":"CommentDeleted.js","sourceRoot":"/src/","sources":["PushEvents/PullRequests/CommentDeleted.ts"],"names":[],"mappings":";;AACA,yDAAmG;AAMnG,oBAA4B,SAAQ,kCAAqC;IACrE,YAAY,MAA4B;QACpC,KAAK,CAAC,MAAM,CAAC,CAAC;IAClB,CAAC;IAEM,eAAe;QAClB,OAAO,IAAI,CAAC;IAChB,CAAC;IAEM,oBAAoB;QACvB,OAAO,uCAAoB,CAAC,cAAc,CAAC;IAC/C,CAAC;CACJ;AAZD,wCAYC"}

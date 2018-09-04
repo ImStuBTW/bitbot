@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "watch": true,
+    "declaration": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "moduleResolution": "node",
+    "outDir": "./build",
+    "declarationDir": "./build",
+    "forceConsistentCasingInFileNames": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "sourceRoot": "/src",
+    "lib": [
+      "es2017"
+    ],
+    "jsx": "react"
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "build/dist",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "**/js"
+  ]
+}
