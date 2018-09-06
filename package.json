@@ -1,7 +1,7 @@
 {
   "name": "bitbot",
-  "version": "1.0.0",
-  "description": "A small Node app to forward BitBucket's webhooks to Discord and Slack webhooks.",
+  "version": "0.2.2",
+  "description": "A small Node app to forward BitBucket's webhooks to Discord.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,12 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/imstuartjones/bitbot.git"
+    "url": "git+https://github.com/halfbakedstudio/bitbot.git"
   },
   "keywords": [
     "Bitbucket",
     "Discord",
-    "Slack",
     "NodeJS",
     "Node",
     "Express"

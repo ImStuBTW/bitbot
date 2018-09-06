@@ -1,25 +1,53 @@
-# BitBot - A BitBucket Push Bot for Discord and Slack
+# BitBot
 
-BitBot is a small Node script for sending commit messages from BitBucket pushes to the Discord or Slack room of your choice. BitBot takes advantage of BitBucket's outgoing webhooks, and Discord/Slack's incoming webhooks. You'll need your own server running NodeJS in order to receive and pass on the messages.
+A BitBucket Push Bot for Discord
 
-# Configure Discord Webhooks
+## Introduction
 
-Navigate to the channel of the Discord server you would like BitBot to post messages in. Click the gear icon next to the channel name. (Note: You will need admin privileges on the server to configure webhooks and use BitBot.) In the channel settings window, click 'Webhooks' on the left hand side of the screen. Click 'Create Webhook'. Enter a bot name, confirm the channel, and optionally upload an icon. Copy the Webhook URL, and click save.
+BitBot is a small Node script for sending commit messages from BitBucket pushes to the Discord room of your choice with minimal configuration. It is deployable on Google App Engine as a Node app.
 
-# Configure Slack Webhooks
+## Features
 
-Navigate to the channel of the Slack server you would like BitBot to post messages in. Click the gear icon on the top of the page. Select 'Add an app' from the dropdown menu. Your Slack channel's app manager will appear in a new browser window. (Note: You will need admin privileges on the server to configure webhooks and use BitBot.) Click 'Manage' in the top right of the browser window. Select 'Custom Integrations' from the left side of the page. Choose 'Incoming Webhooks', and then 'Add Configuration'. Slack will ask you which channel you would like the bot to post into. Click 'Add Incoming Webhook Integration'. On the next page, you can configure your bot further. Copy the Webhook URL.
+BitBot will display a message for:
 
-# Configure BitBot
+- Code pushed to a branch.
+- Pull request created.
+- Pull request merged.
 
-Clone this repository to an empty public folder or subdomain on a server running Node. Edit the config.js file. Set the name to whatever you would like BitBot's display name in the chat to be. Choose a port, and paste in at least one Webhook URL from the previous steps. BitBot can post to both Discord and Slack, or just one of these services. If you are not using a service, just leave the single quotes blank.
+## Non-features
 
-# Build and Run BitBot
+There is no need for BitBot to:
 
-Run an `npm init` command to download the required npm packages. Run `npm start` to begin running BitBot.
+- Analyse branches.
 
-# Configure BitBucket
+Branch deletion is 1-to-1 with pull request merges. Branch creation is not supported by a webhook. The Discord bot to integrate this should be provided by Jira functionality instead, if possible.
 
-Finally, browse to your BitBucket repository. Click the 'Settings' option and choose 'Webhooks' from the settings menu. Click 'Add webhook'. Give your webhook a title, and paste in the server URL where you installed BitBot. Make sure 'Active' is checked. Check the 'Skip certificate verification' checkbox if your server is not running SSL. Make sure 'Triggers' is set to 'Repository push'.
+## Configuration Instructions
 
-Congratulations, BitBot should now be up and running.
+1. Configure Discord Webhooks.
+    1. Navigate to a Discord channel's settings.
+    2. Navigate to "Webhooks".
+    3. Create a webhook.
+    4. Copy the Webhook URL and save.
+2. Deploy BitBot somewhere.
+3. Configure BitBucket.
+    1. Navigate to the BitBucket repository's settings.
+    2. Navigate to "Webhooks."
+    3. Add a webhook using the URL of the BitBot deployment _plus_ the second part of the Discord webhook URL (everything after the TLD).
+    4. Add triggers (e.g.: Repository push) and save.
+
+## Build Instructions
+
+Locally, run:
+
+```shell
+npm init
+npm start
+```
+
+For GCP deployment, you should run:
+
+```shell
+gcloud init
+gcloud app deploy
+```

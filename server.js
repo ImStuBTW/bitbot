@@ -1,103 +1,153 @@
-// Basic express server to listen for Bitbucket webhooks.
-var express = require('express');
-var bodyParser = require('body-parser');
+"use strict";
+
+var bodyParser = require("body-parser");
+var express = require("express");
 var app = express();
 app.use(bodyParser.json());
 
-// Used to push message to chat services.
-var request = require('request');
+var request = require("request");
+var config = require("./config");
 
-// See config.js for server ports and chat webhook configuration.
-var config = require('./config');
+// List the different types of POST messages.
 
-// Create Discord-formatted message and send it to the Discord webhook.
-const discordPost = (message) => {
-    let newMessage = {
-        "username": config.username,
-        "content": 'New push to ' + message.repo + ' by ' + message.username + '.',
-        "embeds": [{
-            title: message.hash,
-            description: message.commit,
-            url: message.link
-        }]
-    }
+const pushPost = (message) => {
+  let newMessage = {
+    "username": config.username,
+    "embeds": [{
+      "title": message.hash,
+      "description": message.commit,
+      "url": message.commitLink,
+      "color": 26080,
+      "footer": {
+        "text": "Push from BitBucket."
+      },
+      "thumbnail": {
+        "url": message.user_thumbnail
+      },
+      "fields": [{
+          "name": "Repository",
+          "value": message.repo,
+          "inline": true
+        },
+        {
+          "name": "Branch",
+          "value": message.branch,
+          "inline": true
+        }
+      ]
+    }]
+  };
 
-    request({
-        url: config.discordEndpoint,
-        method: 'POST',
-        json: true,
-        body: newMessage
-    }, function(error, response, body) {
-        console.log('Discord message sent.');
-        //console.log(response);
-    });
+  request({
+    url: "https://discordapp.com/api/webhooks/" + message.path,
+    method: "POST",
+    json: true,
+    body: newMessage
+  });
+};
+
+const prPost = (message) => {
+  let title = "";
+
+  if (message.state === "MERGED") {
+    title = "PR Completed: ";
+  } else {
+    title = "New PR: ";
+  }
+
+  let newMessage = {
+    "username": config.username,
+    "embeds": [{
+      "title": title + message.title,
+      "description": message.pr,
+      "url": message.prLink,
+      "color": 26080,
+      "footer": {
+        "text": "Push from BitBucket."
+      },
+      "thumbnail": {
+        "url": message.user_thumbnail
+      },
+      "fields": [{
+          "name": "From Branch",
+          "value": message.source,
+          "inline": true
+        },
+        {
+          "name": "To Branch",
+          "value": message.destination,
+          "inline": true
+        },
+        {
+          "name": "State",
+          "value": message.state
+        }
+      ]
+    }]
+  };
+
+  request({
+    url: "https://discordapp.com/api/webhooks/" + message.path,
+    method: "POST",
+    json: true,
+    body: newMessage
+  });
 }
 
-// Create Slack-formatted message and send it to the Slack webhook.
-const slackPost = (message) => {
-    let newMessage = {
-        'username': config.username,
-        'icon_emoji': ':card_file_box:',
-        'text': 'New push to ' + message.repo + ' by ' + message.username + '.',
-        'attachments': [{
-    		"title": message.hash,
-            "title_link": message.link,
-            "text": message.commit
-        }]
-    }
+// Listen for HTTP POST requests.
 
-    request({
-        url: config.slackEndpoint,
-        method: 'POST',
-        json: true,
-        body: newMessage
-    }, function(error, response, body) {
-        console.log('Slack message sent.');
-        //console.log(response);
-    });
-}
-
-// Figure out which endpoints are configured.
-const post = (message) => {
-    console.log('Posting message...');
-    if(config.discordEndpoint) {
-        discordPost(message);
-    }
-    if(config.slackEndpoint) {
-        slackPost(message);
-    }
-}
-
-// Debug to see if your server's config'd correctly.
-/*app.get('/', function (req, res) {
-    res.send('You\'re not supposed to be GET-ing here.');
-});*/
-
-// Listen for HTTP POST requests in whatever folder you run this app in.
-app.post('/', function(req,res) {
-    console.log('Bitbucket webhook recieved!');
-    res.json({message: 'Message recieved by Bitbot.'});
-    // console.log(req.body);
-    // Turn the response into something easier to work with.
-    let message = {
-        'username': req.body.actor.username,
-        'display_name': req.body.actor.display_name,
-        'repo': req.body.repository.name,
-        'hash': req.body.push.changes[0].commits[0].hash,
-        'commit': req.body.push.changes[0].commits[0].message,
-        'link': req.body.push.changes[0].links.html.href
-    };
-    console.log(message);
-    post(message);
+app.get("/", function (req, res) {
+  res.send("Integrator for BitBot is active at this URL.");
 });
 
-// Start listening on the configured port.
-app.listen(config.port, function () {
-  console.log(config.name + ' running on port ' + config.port + '.');
-  if(config.discordEndpoint && config.slackEndpoint) {
-    console.log('Running in Discord and Slack mode.');
+app.post("/:part0/:part1", function (req, res) {
+  res.json({
+    message: "Message recieved by BitBot."
+  });
+
+  // Create a mapping of the response based on information in every message.
+
+  let message = {
+    // Take URL part for Discord URL.
+
+    "path": req.params["part0"] + "/" + req.params["part1"],
+
+    // Get some information about the actor.
+
+    "username": req.body.actor.username,
+    "user_profile": req.body.actor.links.html.href,
+    "user_thumbnail": req.body.actor.links.avatar.href,
+
+    // Get information about the repository.
+
+    "repo": req.body.repository.full_name,
+  };
+
+  // Add additional details depending on the type of message.
+
+  if (typeof req.body.push !== "undefined") {
+    for (let i = 0; i < req.body.push.changes[0].commits.length; i++) {
+      message.hash = req.body.push.changes[0].commits[i].hash;
+      message.commit = req.body.push.changes[0].commits[i].message;
+      message.commitLink = req.body.push.changes[0].links.html.href;
+      message.branch = req.body.push.changes[0].old.name;
+
+      pushPost(message);
+    }
+  } else if (typeof req.body.pullrequest !== "undefined") {
+    message.pr = req.body.pullrequest.description;
+    message.prLink = req.body.pullrequest.links.html.href;
+    message.title = req.body.pullrequest.title;
+    message.destination = req.body.pullrequest.destination.branch.name;
+    message.source = req.body.pullrequest.source.branch.name;
+    message.state = req.body.pullrequest.state;
+
+    prPost(message);
   }
-  else if(config.discordEndpoint) { console.log('Running in Discord mode.') }
-  else if(config.slackEndpoint) { console.log('Running in Slack mode.') }
-  else { console.log('Endpoints not configured.') }
+});
+
+// Start listening.
+
+app.listen(config.port, function () {
+  console.log(config.username + " running on port " + config.port + ".");
 });
