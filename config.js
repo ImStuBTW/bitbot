@@ -1,4 +1,4 @@
 module.exports = {
-    'username' : 'BitBot',
-    'port' : 8080,
+    "username": "BitBot",
+    "port": 8080,
 };
