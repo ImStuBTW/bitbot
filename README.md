@@ -14,6 +14,14 @@ BitBot will display a message for:
 - Pull request created.
 - Pull request merged.
 
+## Non-features
+
+There is no need for BitBot to:
+
+- Analyse branches.
+
+Branch deletion is 1-to-1 with pull request merges. Branch creation is not supported by a webhook. The Discord bot to integrate this should be provided by Jira functionality instead, if possible.
+
 ## Configuration Instructions
 
 1. Configure Discord Webhooks.
